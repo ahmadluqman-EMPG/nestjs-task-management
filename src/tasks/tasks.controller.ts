@@ -15,7 +15,7 @@ import {
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
-import { GetTaskFilterDto } from './dto/get-tasks-filter.dto';
+import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
 import { TaskStatusValidationPipe } from './pipes/task-status-validation.pipe';
 import { Task } from './task.entity';
 import { TaskStatus } from './task-status.enum';
@@ -32,7 +32,7 @@ export class TasksController {
 
   @Get()
   getTasks(
-    @Query(ValidationPipe) filterDto: GetTaskFilterDto,
+    @Query(ValidationPipe) filterDto: GetTasksFilterDto,
     @GetUser() user: User,
   ): Promise<Task[]> {
     this.logger.verbose(

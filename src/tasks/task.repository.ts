@@ -2,7 +2,7 @@ import { EntityRepository, Repository } from 'typeorm';
 import { Task } from './task.entity';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { TaskStatus } from './task-status.enum';
-import { GetTaskFilterDto } from './dto/get-tasks-filter.dto';
+import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
 import { User } from '../auth/user.entity';
 import { Logger, InternalServerErrorException } from '@nestjs/common';
 
@@ -10,7 +10,7 @@ import { Logger, InternalServerErrorException } from '@nestjs/common';
 export class TaskRepository extends Repository<Task> {
   private logger = new Logger('TaskRepository');
 
-  async GetTasks(filterDto: GetTaskFilterDto, user: User): Promise<Task[]> {
+  async getTasks(filterDto: GetTasksFilterDto, user: User): Promise<Task[]> {
     const { status, search } = filterDto;
     const query = this.createQueryBuilder('task');
 
